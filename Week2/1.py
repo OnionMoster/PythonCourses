@@ -20,13 +20,12 @@ def apply_pattern_to_list(L, pattern='+-', from_start=True):
                     n += 1
                 else:
                     z +=1
-                    pop_line[n+1] = L[n+1]
+                    pop_line[n+z] = L[n+1]
                     L.pop(n+1)
 
-    return pop_line , L
+    return pop_line
+
 
 L = [1, 3, 2, 0, 0, -2, -2, 1, 5, -4]
-
-rusult = apply_pattern_to_list(L, '++-')
-
-print (rusult)
+z =  apply_pattern_to_list(L, '++-')
+print(z)
