@@ -49,12 +49,12 @@ def apply_pattern_to_list(L, pattern="+-", from_start=True):
             ###    x += 1
             ###    pop_line[n - x] = L[n - 1]
             ###    L.pop(n - 1)
-        if (b == "+" and L[n] < L[n - 1]) or (b == "-" and L[n] > L[n - 1]):
-            n -= 1
-        else:
-            x += 1
-            pop_line[n - x] = L[n - 1]
-            L.pop(n - 1)
+            if (b == "+" and L[n] < L[n - 1]) or (b == "-" and L[n] > L[n - 1]):
+                n -= 1
+            else:
+                x += 1
+                pop_line[n - x] = L[n - 1]
+                L.pop(n - 1)
 
     return pop_line
 
