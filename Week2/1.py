@@ -56,10 +56,9 @@ def apply_pattern_to_list(L, pattern="+-", from_start=True):
                 pop_line[n - x] = L[n - 1]
                 L.pop(n - 1)
 
-    return pop_line
+    return pop_line, L
 
 
 L = [0, -4, 4, 4, 2, -2, 1, 3, -3, -4, -4, -2, -3, 0, 1, 2, -4, 3, -1, 1]
-x = apply_pattern_to_list(L, "-+", False)
-print(x)
-print(L)
+x = apply_pattern_to_list(L, "+-")
+print("1", x)
