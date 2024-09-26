@@ -13,7 +13,7 @@ def apply_pattern_to_list(L, pattern="+-", from_start=False):
             n += 1
         else:
             x += 1
-            pop_line[n + x] = I[n + 1]
+            pop_line[-n - x - 1] = I[n + 1]
             I.pop(n + 1)
 
     L1 = I[::-1]
