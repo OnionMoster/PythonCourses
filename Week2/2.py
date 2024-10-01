@@ -6,20 +6,32 @@ def apply_pattern_to_list(L, pattern="+-", from_start=True):
     error_count = 0
     n = 0
     i = 1
+<<<<<<< HEAD
     New_List = []
+=======
+    I = []
+>>>>>>> fa1b678f90e392e10ca9d02d8986416e99e15761
     if from_start:
         while n < len(L):
             a = pattern_list[n % p]
             if i < len(L) - n:
                 if (a == "+" and L[n] < L[n + i]) or (a == "-" and L[n] > L[n + i]):
+<<<<<<< HEAD
                     New_List.append(L[n])
+=======
+                    I.append(L[n])
+>>>>>>> fa1b678f90e392e10ca9d02d8986416e99e15761
                     n += 1
                 else:
                     error_count += 1
                     pop_line[n + error_count] = L[n + 1]
                     L.pop(n + 1)
             else:
+<<<<<<< HEAD
                 New_List.append(L[n])
+=======
+                I.append(L[n])
+>>>>>>> fa1b678f90e392e10ca9d02d8986416e99e15761
                 break
     else:
         n = -1
@@ -33,7 +45,11 @@ def apply_pattern_to_list(L, pattern="+-", from_start=True):
                 L.pop(n - 1)
 
     L.clear()
+<<<<<<< HEAD
     L.extend(New_List)
+=======
+    L.extend(I)
+>>>>>>> fa1b678f90e392e10ca9d02d8986416e99e15761
     return pop_line
 
 
