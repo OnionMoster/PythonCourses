@@ -4,7 +4,7 @@ import unicodedata
 def input_number():
     First_message = "Please input two integers a and b with 0 <= a <= b <= 1114111,\n       both integers being separated by ~, with possibly \n       spaces and tabs before and after the numbers:"
     Error_message = "Incorrect input, try again!"
-    second_message = "Enter a string:"
+    second_message = "Enter a string: "
     match_list = []
 
     # 获取输入
@@ -51,11 +51,28 @@ def input_number():
 
             # 匹配第二次输入
             String = input(second_message)
-            print(String)
+            # print(String)
 
         else:
             print(Error_message)
-            return input_number()
+            for i in range(a, b + 1):
+                try:
+                    name = unicodedata.name(chr(i))
+                    if name.startswith(String):
+                        match_list.append((chr(i)), name)
+                except ValueError:
+                    continue
+        if not match_list:
+            print(
+                f"None of the characters you want me to consider\n  has a name that starts with {String}"
+            )
+            return ()
+        else:
+            for unicode, name in match_list:
+                print(
+                    f"Here are those of the characters under consideration\n  whose name starts with {String}:"
+                )
+                print(f"{name}:{unicode}")
 
 
 input_number()
