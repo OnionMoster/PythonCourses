@@ -2,9 +2,9 @@ import unicodedata
 
 
 def input_number():
-    First_message = "Please input two integers a and b with 0 <= a <= b <= 1114111,\n       both integers being separated by ~, with possibly \n       spaces and tabs before and after the numbers:"
-    Error_message = "Incorrect input, try again!"
-    second_message = "Enter a string: "
+    First_message = "Please input two integers a and b with 0 <= a <= b <= 1114111,\n       both integers being separated by ~, with possibly\n       spaces and tabs before and after the numbers:\n       "
+    Error_message = "\nIncorrect input, try again!"
+    second_message = "\nEnter a string: "
     match_list = []
 
     # 获取输入
@@ -34,13 +34,13 @@ def input_number():
             n = x / (b - a + 1)
             n1 = f"{(x / (b - a + 1)) * 100:.2f}"
             # print(n1)
-            if a == b and n == 100:
-                print(f"{a} is the code point of a named character.")
-            # ab不同一个数
-            elif n == 100:
-                print(
-                    f"All numbers between {a} and {b} \n  are code points of named characters."
-                )
+            if n == 100:
+                if a == b:
+                    print(f"{a} is the code point of a named character.")
+                else:
+                    print(
+                        f"All numbers between {a} and {b} \n  are code points of named characters."
+                    )
             elif 0 < n < 100:
                 print(
                     f"Amongst the numbers between {a} and {b},\n  {n1}% are code points of named characters."
