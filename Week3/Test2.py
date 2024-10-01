@@ -50,3 +50,22 @@
                         "Here are those of the characters under consideration\n  whose name starts with {String}:"
                     )
                     print("{name}:{point}")
+
+
+
+
+
+
+
+x = 0
+            for i in num_list:
+                try:
+                    unicodedata.name(i)
+                    x += 1
+                except ValueError:
+                    pass
+
+
+
+
+

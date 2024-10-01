@@ -23,7 +23,7 @@ def input_number():
         # print(a, b)
         # 判断ab
         if 0 <= a <= 1114111 and 0 <= b <= 1114111 and a <= b:
-            num_list = [i for i in range(a, b)]
+            num_list = [i for i in range(a, b + 1)]
             x = 0
             for i in num_list:
                 try:
@@ -33,22 +33,20 @@ def input_number():
                     pass
             n = x / (b - a + 1)
             n1 = f"{(x / (b - a + 1)) * 100:.2f}"
-            print(n1)
-            if n == 100:
-                # ab同一个数
-                if a == b:
-                    print("{a} is the code point of a named character.")
-                # ab不同一个数
-                else:
-                    print(
-                        "All numbers between {a} and {b} \n  are code points of named characters."
-                    )
+            # print(n1)
+            if a == b and n == 100:
+                print(f"{a} is the code point of a named character.")
+            # ab不同一个数
+            elif n == 100:
+                print(
+                    f"All numbers between {a} and {b} \n  are code points of named characters."
+                )
             elif 0 < n < 100:
                 print(
-                    "Amongst the numbers between {a} and {b},\n  {n1}% are code points of named characters."
+                    f"Amongst the numbers between {a} and {b},\n  {n1}% are code points of named characters."
                 )
             else:
-                print("{a} is not the code point of a named character.")
+                print(f"{a} is not the code point of a named character.")
                 return ()
 
             # 匹配第二次输入
