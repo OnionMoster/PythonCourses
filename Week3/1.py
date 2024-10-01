@@ -23,7 +23,17 @@ def input_number():
         # print(a, b)
         # 判断ab
         if 0 <= a <= 1114111 and 0 <= b <= 1114111 and a <= b:
-            n = 1  # （b-a+1）/unicode
+            num_list = [i for i in range(a, b)]
+            x = 0
+            for i in num_list:
+                try:
+                    unicodedata.name(chr(i))
+                    x += 1
+                except ValueError:
+                    pass
+            n = x / (b - a + 1)
+            n1 = f"{(x / (b - a + 1)) * 100:.2f}"
+            print(n1)
             if n == 100:
                 # ab同一个数
                 if a == b:
@@ -35,11 +45,16 @@ def input_number():
                     )
             elif 0 < n < 100:
                 print(
-                    "Amongst the numbers between {a} and {b},\n  {n}% are code points of named characters."
+                    "Amongst the numbers between {a} and {b},\n  {n1}% are code points of named characters."
                 )
             else:
                 print("{a} is not the code point of a named character.")
                 return ()
+
+            # 匹配第二次输入
+            String = input(second_message)
+            print(String)
+
         else:
             print(Error_message)
             return input_number()
