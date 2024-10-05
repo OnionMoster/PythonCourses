@@ -7,15 +7,8 @@ def sieve_of_primes_up_to(n):
         if sieve[p]:
             for i in range(p * p, n + 1, p):
                 sieve[i] = False
-    return sieve
+    # return sieve
+    print(sieve)
 
 
-def tri_numbers(n):
-    bool_num = sieve_of_primes_up_to(n)
-    num = [i for i in range(2, n + 1) if bool_num[i]]
-    # print(f"{n}:{num}")
-
-    # 所有三个数乘小于和等于n的
-
-
-tri_numbers(123)
+sieve_of_primes_up_to(8)
