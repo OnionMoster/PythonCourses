@@ -13,7 +13,7 @@ ordered from smallest to largest, the numbers having that maximum gap in their d
 不能被2和3整除（2和3除外） 
 
 a * b * c <= n
-a,b,c 分别不能大于等于n的立方根 ?
+a,b,c 不能大于等于n的立方根
 
 
 1.求出有多少三个素数相乘等于和小于n的数量
