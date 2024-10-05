@@ -21,12 +21,17 @@ def tri_numbers(n):
 
     # 所有三个数乘小于和等于n的 遍历*3
     for a in range(len(num)):
+        if num[a] > n // 3:
+            break
         for b in range(a, len(num)):
+            if num[a] * num[b] > n // 2:
+                break
             for c in range(b, len(num)):
                 final_num = num[a] * num[b] * num[c]
-                if final_num <= n:
-                    num_list.append(final_num)
-                    num_dict.update({final_num: (num[a], num[b], num[c])})
+                if final_num > n:
+                    break
+                num_list.append(final_num)
+                num_dict.update({final_num: (num[a], num[b], num[c])})
 
     fianl_list = sorted(num_list)
     fianl_dict = dict(sorted(num_dict.items()))
@@ -39,33 +44,26 @@ def tri_numbers(n):
         q = value[2] - value[1]
         if p <= q:
             rela_list.append(p)
-            # print(f"{key}:{p}")
             key_dict.update({key: p})
         else:
             rela_list.append(q)
             key_dict.update({key: q})
-            # print(f"{key}:{q}")
-    # print(rela_list)
     max_gap = max(rela_list)
     # print(key_dict)
 
     # 遍历
     all_max_gap_list = [key for key, value in key_dict.items() if value == max_gap]
 
-    # 遍历
+    if len(fianl_list) <= 1:
+        print(f"There is {len(fianl_list)} trinumber at most equal to {n}.")
+    else:
+        print(f"There are {len(fianl_list)} trinumbers at most equal to {n}.")
+    print(f"The largest one is {fianl_list[-1]}, equal to {Ma} x {Mb} x {Mc}.")
+    print(f"\nThe maximum gap in decompositions is {(max_gap)}.")
+    print(f"It is achieved with:")
     for i in all_max_gap_list:
         a, b, c = fianl_dict[i]
-        # print(f"{i} = {a} x {b} x {c} ")
-
-    # print(max_gap)
-    # print(all_max_gap_list)
-    # print(key, value)
-
-    # print(f"There are {len(fianl_list)} trinumbers at most equal to {n}.")
-    # print(fianl_dict)
-    # print(f"The largest one is {fianl_list[-1]}, equal to {Ma} x {Mb} x {Mc}.")
-    # rint(f"\nThe maximum gap in decompositions is {(max_gap)}.")
-    # print(f"It is achieved with:")
+        print(f"  {i} = {a} x {b} x {c}")
 
 
-tri_numbers(123)
+tri_numbers(50000000)
