@@ -1,0 +1,16 @@
+the number of trinumbers at most equal to n included;
+所有三个数乘小于和等于n的。
+the largest trinumber at most equal to n included;
+不大于n的三个数乘
+the maximum gap in the decomposition of trinumbers at most equal to n included;
+差值最大的三个数
+ordered from smallest to largest, the numbers having that maximum gap in their decompositions together with their decompositions.
+从小到大，拥有最大间隔的
+
+2 <= n <= 50_000_000 
+
+素数：(a,b,c)
+不能被2和3整除（2和3除外） 
+
+a * b * c <= n
+
