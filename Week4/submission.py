@@ -17,6 +17,7 @@ def tri_numbers(n):
     num_dict = {}
     rela_list = []
     key_dict = {}
+    max_gap = 0
 
     for a in range(len(num)):
         if num[a] > n ** (1 / 3):
@@ -35,10 +36,13 @@ def tri_numbers(n):
                 if p <= q:
                     rela_list.append(p)
                     key_dict.update({final_num: p})
+                    if p > max_gap:
+                        max_gap = p
                 else:
                     rela_list.append(q)
                     key_dict.update({final_num: q})
-    max_gap = max(rela_list)
+                    if q > max_gap:
+                        max_gap = q
     Ma, Mb, Mc = num_dict[max(num_list)]
 
     all_max_gap_list = [key for key, value in key_dict.items() if value == max_gap]
@@ -56,4 +60,4 @@ def tri_numbers(n):
         print(f"  {i} = {a} x {b} x {c}")
 
 
-tri_numbers(10000000)
+tri_numbers(50000000)
