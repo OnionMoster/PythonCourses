@@ -35,7 +35,7 @@ def frist_game():
         shuffle(cards)
         # print(seed_num, ":", cards)
         origin = cards[:16]
-        cards_num = cards_num - 15
+        cards_num = cards_num - 15  # ?
         # print(first)
 
         print("]" * (cards_num - len(remove_cards)))
@@ -69,7 +69,7 @@ def frist_game():
         print("]" * (cards_num - len(remove_cards)))
 
         # 从牌堆抽需要的牌
-        add = cards[16 : 16 + remove_cards]
+        add = cards[16 : 16 + len(remove_cards)]  # ?
 
         # 补充后的矩阵
         for row in next_matrix:
