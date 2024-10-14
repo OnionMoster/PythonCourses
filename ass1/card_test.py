@@ -34,7 +34,7 @@ def generate_unicode_cards_by_range():
             matrix_dict[value] = (x_position, y_position)
 
     for key, value in matrix_dict.items():
-        print(f"Êý×Ö: {key}, Î»ÖÃ: X={value[0]}, Y={value[1]}")
+        print(f"{key},X={value[0]}, Y={value[1]}")
 
 
 generate_unicode_cards_by_range()
