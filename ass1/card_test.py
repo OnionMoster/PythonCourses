@@ -23,18 +23,5 @@ def generate_unicode_cards_by_range():
 
     # print(unicode_cards[0])
 
-    matrix_dict = {}
-    n = 1
-
-    for i in range(4):
-        for j in range(4):
-            value = i * 4 + j + 1
-            x_position = n + i
-            y_position = n + j
-            matrix_dict[value] = (x_position, y_position)
-
-    for key, value in matrix_dict.items():
-        print(f"{key},X={value[0]}, Y={value[1]}")
-
 
 generate_unicode_cards_by_range()
