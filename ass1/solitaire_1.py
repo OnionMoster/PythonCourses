@@ -47,9 +47,9 @@ def frist_game():
             original_matrix.append(row)
             showing_cards.extend(row)
             print(row)
-            
+
         # 取出 J Q K
-        while Joker in showing_cards:
+        while any(card in Joker for card in showing_cards):
             for row in original_matrix:
                 new_row = []
                 for card in row:
