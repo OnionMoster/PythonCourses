@@ -11,7 +11,7 @@ def frist_game():
     times = 1
     original_matrix = []
     next_matrix = []
-    add_count = 0
+    cards_index = 16
 
     seed_num = input(f"Please enter an integer to feed the seed() function: ")
     print(f"\nDeck shuffled, ready to start!")
@@ -50,18 +50,21 @@ def frist_game():
 
         # 取出 J Q K
         while any(card in Joker for card in showing_cards):
+            remove_num = 0
+            add_count = 0
             for row in original_matrix:
-                last_removed_cards = []
                 new_row = []
                 for card in row:
                     if card in Joker:
-                        last_removed_cards.append(card)
+                        remove_num += 1
+                        remove_cards.append(card)
                         new_row.append("\t")
                     else:
                         new_row.append(str(card))            
                 next_matrix.append(new_row)
+            print("remove_num",remove_num)
 
-            print(f"\nPutting {- len(remove_cards) - len(last_removed_cards)} pictures aside:\n")
+            print(f"\nPutting {int(remove_num)} pictures aside:\n")
             print("\n取出 J Q K后的矩阵\n")
             # 取出 J Q K后的矩阵
 
@@ -71,11 +74,12 @@ def frist_game():
                     print(f"You uncovered all pictures, you won!")
                     return ()
 
-            print(f"\nDrawing and placing {len(remove_cards)} cards:")
+            print(f"\nDrawing and placing {int(remove_num)} cards:")
             print("]" * (cards_num - len(remove_cards)))
 
             # 从牌堆抽需要的牌
-            add = cards[16 : 16 + len(remove_cards)]  # ?
+            add = cards[cards_index : cards_index + int(remove_num)]
+            cards_index += int(remove_num)
 
             # 补充后的矩阵
             print("\n补充后的矩阵\n")
