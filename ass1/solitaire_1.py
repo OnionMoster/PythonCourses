@@ -35,8 +35,9 @@ def frist_game():
         shuffle(cards)
         # print(seed_num, ":", cards)
         origin = cards[:16]
-        cards_num = cards_num - 15  # ?
+        cards_num = cards_num - 15 
         # print(first)
+        showing_cards = []
 
         print("]" * (cards_num - len(remove_cards)))
 
@@ -44,43 +45,46 @@ def frist_game():
         for i in range(0, len(origin), 4):
             row = origin[i : i + 4]
             original_matrix.append(row)
+            showing_cards.extend(row)
             print(row)
+            
+        # 取出 J Q K
+        while Joker in showing_cards:
+            for row in original_matrix:
+                new_row = []
+                for card in row:
+                    if card in Joker:
+                        remove_cards.append(card)
+                        new_row.append("\t")
+                    else:
+                        new_row.append(str(card))
+                next_matrix.append(new_row)
 
-            # 取出 J Q K
-            new_row = []
-            for card in row:
-                if card in Joker:
-                    remove_cards.append(card)
-                    new_row.append("\t")
-                else:
-                    new_row.append(str(card))
-            next_matrix.append(new_row)
+            print(f"\nPutting {len(remove_cards)} pictures aside:\n")
 
-        print(f"\nPutting {len(remove_cards)} pictures aside:\n")
+            # 取出 J Q K后的矩阵
+            for row in next_matrix:
+                print(row)
+                if remove_cards == 12:
+                    print(f"You uncovered all pictures, you won!")
+                    return ()
 
-        # 取出 J Q K后的矩阵
-        for row in next_matrix:
-            print(row)
-            if remove_cards == 12:
-                print(f"You uncovered all pictures, you won!")
-                return ()
+            print(f"\nDrawing and placing {len(remove_cards)} cards:")
+            print("]" * (cards_num - len(remove_cards)))
 
-        print(f"\nDrawing and placing {len(remove_cards)} cards:")
-        print("]" * (cards_num - len(remove_cards)))
+            # 从牌堆抽需要的牌
+            add = cards[16 : 16 + len(remove_cards)]  # ?
 
-        # 从牌堆抽需要的牌
-        add = cards[16 : 16 + len(remove_cards)]  # ?
-
-        # 补充后的矩阵
-        for row in next_matrix:
-            add_row = []
-            for card in row:
-                if card == "\t":
-                    add_row.append(add[add_count])
-                    add_count += 1
-                else:
-                    add_row.append(card)
-            print(add_row)
+            # 补充后的矩阵
+            for row in next_matrix:
+                add_row = []
+                for card in row:
+                    if card == "\t":
+                        add_row.append(add[add_count])
+                        add_count += 1
+                    else:
+                        add_row.append(card)
+                print(add_row)
         times += 1
     else:
         if 12 - len(remove_cards) > 1:
