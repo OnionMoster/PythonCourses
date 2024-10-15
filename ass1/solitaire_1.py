@@ -51,18 +51,20 @@ def frist_game():
         # 取出 J Q K
         while any(card in Joker for card in showing_cards):
             for row in original_matrix:
+                last_removed_cards = []
                 new_row = []
                 for card in row:
                     if card in Joker:
-                        remove_cards.append(card)
+                        last_removed_cards.append(card)
                         new_row.append("\t")
                     else:
-                        new_row.append(str(card))
+                        new_row.append(str(card))            
                 next_matrix.append(new_row)
 
-            print(f"\nPutting {len(remove_cards)} pictures aside:\n")
-
+            print(f"\nPutting {- len(remove_cards) - len(last_removed_cards)} pictures aside:\n")
+            print("\n取出 J Q K后的矩阵\n")
             # 取出 J Q K后的矩阵
+
             for row in next_matrix:
                 print(row)
                 if remove_cards == 12:
@@ -76,6 +78,7 @@ def frist_game():
             add = cards[16 : 16 + len(remove_cards)]  # ?
 
             # 补充后的矩阵
+            print("\n补充后的矩阵\n")
             for row in next_matrix:
                 add_row = []
                 for card in row:
