@@ -49,7 +49,7 @@ def frist_game():
             print(row)
 
         # 取出 J Q K
-        while any(card in Joker for card in showing_cards):
+        while any(card in Joker for card in showing_cards): # 这里没有变成新的矩阵
             remove_num = 0
             add_count = 0
             for row in original_matrix:
@@ -68,11 +68,11 @@ def frist_game():
             print("\n取出 J Q K后的矩阵\n")
             # 取出 J Q K后的矩阵
 
-            for row in next_matrix:
+            for row in next_matrix: # bug
                 print(row)
                 if remove_cards == 12:
                     print(f"You uncovered all pictures, you won!")
-                    return ()
+                    return 
 
             print(f"\nDrawing and placing {int(remove_num)} cards:")
             print("]" * (cards_num - len(remove_cards)))
