@@ -69,11 +69,7 @@ def frist_game():
         for row in next_matrix:  # bug
             print(row)
 
-        # 判断条件
-        if remove_num == 0:
-            times += 1
-            break
-        elif remove_cards == 12:
+        if remove_cards == 12:
             print(f"You uncovered all pictures, you won!")
             return
         else:
@@ -96,6 +92,10 @@ def frist_game():
                         add_count += 1
                     else:
                         add_row.append(card)
+
+        if remove_num == 0:
+            times += 1
+            break
 
     while times > 5:
         if 12 - len(remove_cards) > 1:
