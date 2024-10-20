@@ -56,8 +56,8 @@ def matrix(origin_cards, replace_cards=[]):
         47: "🂩",
         48: "🂪",
         49: "🂫",
-        50: "🂬",
-        51: "🂭",
+        50: "🂭",
+        51: "🂮",
     }
     if len(replace_cards) > 0:
         for card in replace_cards:
@@ -75,10 +75,10 @@ def matrix(origin_cards, replace_cards=[]):
                 output.append(
                     "\t" + (cards_dict[card] if card in cards_dict else str(card))
                 )
-        print("".join(output))
+        print("".join(output), end="\n")
 
 
-def one_game():
+def first_game():
     CARD_NUM = 52
     JOKER = {10, 11, 12, 23, 24, 25, 36, 37, 38, 49, 50, 51}
     remove_cards = []
@@ -175,3 +175,76 @@ def one_game():
         print(f"\nYou uncovered all pictures, you won!")
     elif times == 4 and jqk_num < 12:
         print(f"\nYou uncovered only {jqk_num} pictures, you lost!")
+
+
+def play_more_game(num_games, initial_seed):
+    JOKER_CARDS = {10, 11, 12, 23, 24, 25, 36, 37, 38, 49, 50, 51}
+    uncovered_results = defaultdict(int)
+
+    for game_index in range(num_games):
+        seed_value = initial_seed + game_index
+        removed_cards = []
+        shuffle_round = 0
+
+        while shuffle_round < 4:
+            current_card_index = 0
+            cards_to_replace = []
+
+            seed(seed_value + shuffle_round)
+            cards = sorted(set(range(52)) - set(removed_cards))
+            shuffle(cards)
+            cards.reverse()
+            current_cards = cards[:16]
+            current_card_index += 16
+
+            # 替换
+            for i in range(len(current_cards)):
+                if current_cards[i] in JOKER_CARDS:
+                    cards_to_replace.append({"index": i, "card": ""})
+                    removed_cards.append(current_cards[i])
+                    current_cards[i] = ""
+
+            while len(cards_to_replace) > 0:
+                for i in range(len(cards_to_replace)):
+                    if current_card_index < len(cards):
+                        cards_to_replace[i]["card"] = cards[current_card_index]
+                        current_card_index += 1
+                    else:
+                        # 如果没有足够的牌，跳出补牌循环
+                        cards_to_replace = []
+                        break
+
+                temp_cards_to_replace = []
+                for i in range(len(cards_to_replace)):
+                    if cards_to_replace[i]["card"] in JOKER_CARDS:
+                        temp_cards_to_replace.append(cards_to_replace[i])
+                        current_cards[cards_to_replace[i]["index"]] = ""
+                        removed_cards.append(cards_to_replace[i]["card"])
+                    else:
+                        current_cards[cards_to_replace[i]["index"]] = cards_to_replace[
+                            i
+                        ]["card"]
+                cards_to_replace = temp_cards_to_replace
+
+            shuffle_round += 1
+
+            if len(removed_cards) == 12:
+                break
+
+        if len(removed_cards) == 12:
+            uncovered_results[12] += 1
+        else:
+            uncovered_results[len(removed_cards)] += 1
+
+    total_games = sum(uncovered_results.values())
+    print("Number of uncovered pictures | Frequency")
+    print("----------------------------------------")
+    for key in sorted(uncovered_results.keys()):
+        probability = (uncovered_results[key] / total_games) * 100
+        formatted_probability = f"{probability:.2f}%"
+        if probability < 0.5:
+            formatted_probability = "0.00%"
+        print(f"{key:28} | {formatted_probability:>9}")
+
+
+play_more_game(500, 11)
