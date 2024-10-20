@@ -87,7 +87,9 @@ def simulate(num_games=-1, initial_seed=-1):
     times_words = ["second", "third", "fourth"]
     if num_games == -1 and initial_seed == -1:
         try:
-            seed_num = int(input("Please enter an integer to feed the seed() function: "))
+            seed_num = int(
+                input("Please enter an integer to feed the seed() function: ")
+            )
         except EOFError:
             return
         print(f"\nDeck shuffled, ready to start!")
@@ -192,7 +194,6 @@ def simulate(num_games=-1, initial_seed=-1):
             while shuffle_round < 4:
                 card_index = 0
                 replace_cards = []
-
                 seed(seed_value + shuffle_round)
                 cards = sorted(set(range(52)) - set(removed_cards))
                 shuffle(cards)
