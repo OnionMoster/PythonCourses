@@ -1,0 +1,23 @@
+计算 year = (age - 1) % 365
+性别 1 female 2 male
+    0 false 1 ture
+数据范围 
+150 <= height  <= 200
+50 <= weight <= 150
+80 <= ap_hi <= 200
+70 <= ap_lo <= 140
+例子：
+    两个大区间
+      sun ， moon
+        里面5个小区间 长度分别为总长度/5
+
+获取
+  a = sun[1]/sum的总人数 
+  b = moon[1]/moon的总人数
+得到 a/b f.2
+所有sum区间中的人数占所有sum的人数
+
+只要rate > 1
+从大到小
+两个rate 相同，被属性决定顺序（id;age;gender;height;weight;ap_hi;ap_lo;cholesterol;gluc;smoke;alco;active;cardio）
+属性相同list(rang(5)) false -> ture

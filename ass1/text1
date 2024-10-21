@@ -1,6 +1,0 @@
-try:
-    seed_num = int(input(f"Please enter an integer to feed the seed() function: "))
-except ValueError:
-      return
-    print("\nDeck shuffled, ready to start!")
-    print("[" * cards_num)
